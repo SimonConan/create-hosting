@@ -20,12 +20,12 @@ then
     exit 1
 fi
 
-# if [[ $EUID -ne 0 ]]; 
-# then
-#     echo ""
-#     echo -e "\033[33mThis script must be run as root\033[0m"
-#     exit 1
-# fi
+if [[ $EUID -ne 0 ]]; 
+then
+    echo ""
+    echo -e "\033[33mThis script must be run as root\033[0m"
+    exit 1
+fi
 
 DOMAIN=$1
 USER=$2
