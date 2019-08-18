@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; 
+then
+    echo ""
+    echo -e "\033[33mThis script must be run as root\033[0m"
+    exit 1
+fi
+
 if [[ -z "$3" ]] || [[ $1 == --* ]] || [[ $2 == --* ]]
 then
     echo ""
@@ -17,13 +24,6 @@ then
     echo -e "\033[33mHelp:\033[0m"
     echo " Create hosting for test.fr and creation of a user test"
     echo -e " \033[32m$0 test.fr testuser\033[0m"
-    exit 1
-fi
-
-if [[ $EUID -ne 0 ]]; 
-then
-    echo ""
-    echo -e "\033[33mThis script must be run as root\033[0m"
     exit 1
 fi
 
