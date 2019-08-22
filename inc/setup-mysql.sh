@@ -1,5 +1,5 @@
 # Function to create a mysql user and a database for the projet
-addWP()
+setupMysql()
 {
     source ${PWD}/.env
     if [ ${MYSQL_ROOT_PASSWORD} != "" ]

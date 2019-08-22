@@ -33,6 +33,10 @@ then
     echo -e  "      \033[32mCreate a mysql user and a database for the projet\033[0m"
     echo -e  " \033[32m--add-wp\033[0m"
     echo -e  "      \033[32mAdd WP sources\033[0m"
+    echo -e  " \033[32m--create-vhost\033[0m"
+    echo -e  "      \033[32mCreate Apache vhost for the project\033[0m"
+    echo -e  " \033[32m--add-ssl\033[0m"
+    echo -e  "      \033[32mAdd a ssl certificate\033[0m"
     echo ""
     echo -e "\033[33mHelp:\033[0m"
     echo " Create hosting for test.fr and creation of a user test"
@@ -54,10 +58,14 @@ do
                 source ${PWD}/inc/create-user.sh
                 source ${PWD}/inc/setup-mysql.sh
                 source ${PWD}/inc/add-wp.sh
+                source ${PWD}/inc/create-vhost.sh
+                source ${PWD}/inc/add-ssl.sh
                 createUser
                 createDir
                 setupMysql
                 addWP
+                createVhost
+                addSsl
                 exit 1;;
             --create-dir)
                 source ${PWD}/inc/create-dir.sh
@@ -73,7 +81,15 @@ do
                 ARG="true";;
             --setup-mysql)
                 source ${PWD}/inc/setup-mysql.sh
-                addWP
+                setupMysql
+                ARG="true";;
+            --create-vhost)
+                source ${PWD}/inc/create-vhost.sh
+                createVhost
+                ARG="true";;
+            --add-ssl)
+                source ${PWD}/inc/add-ssl.sh
+                addSsl
                 ARG="true";;
             *)
                 echo ""
@@ -92,45 +108,13 @@ then
     echo -e  "      \033[32mCreate directory for user and add sftp chroot dir in conf\033[0m"
     echo -e  " \033[32m--create-user\033[0m"
     echo -e  "      \033[32mCreate SFTP user\033[0m"
+    echo -e  " \033[32m--setup-mysql\033[0m"
+    echo -e  "      \033[32mCreate a mysql user and a database for the projet\033[0m"
+    echo -e  " \033[32m--add-wp\033[0m"
+    echo -e  "      \033[32mAdd WP sources\033[0m"
+    echo -e  " \033[32m--create-vhost\033[0m"
+    echo -e  "      \033[32mCreate Apache vhost for the project\033[0m"
+    echo -e  " \033[32m--add-ssl\033[0m"
+    echo -e  "      \033[32mAdd a ssl certificate\033[0m"
     echo ""
 fi
-
-# if [ ! -f /etc/apache2/sites-available/${REFERENCEDOMAIN}.conf ]
-# then
-    # echo "# ${REFERENCEDOMAIN}" > /etc/apache2/sites-available/${REFERENCEDOMAIN}.conf
-    # cat <<EOF> /etc/apache2/sites-available/${REFERENCEDOMAIN}.conf
-# <VirtualHost *:8000>
-    # ServerName ${REFERENCEDOMAIN}
-    # ServerAdmin webmaster@${REFERENCEDOMAIN}
-    # CustomLog /var/log/apache2/${REFERENCEDOMAIN}.log combined
-    # CustomLog /var/log/apache2/access.log vhost_combined
-    # DocumentRoot /var/www/vhosts/${REFERENCEDOMAIN}/current/site
-    # <IfModule mod_vhost_alias.c>
-        # ServerAlias ${ALIASDOMAIN}
-        # VirtualDocumentRoot /var/www/vhosts/%0/current/site
-    # </IfModule>
-    # <IfModule mod_proxy.c>
-        # SetEnv proxy-sendcl 1
-        # ProxyPreserveHost On
-        # AllowEncodedSlashes On
-        # ProxyRequests Off
-        # ProxyTimeout 300
-        # <Proxy *>
-            # Options +Includes
-            # AddDefaultCharset off
-        # </Proxy>
-    # </IfModule>
-    # <IfModule mod_php.c>
-        # php_admin_flag engine Off
-        # php_admin_value open_basedir "/etc/php:/usr/share/php:/tmp:/var/tmp:/var/lib/php:/var/www/vhosts/"
-    # </IfModule>
-    # <IfModule mod_rewrite.c>
-        # RewriteEngine On
-    # </IfModule>
-    # <IfModule mpm_itk_module>
-        # AssignUserId ${USER}-${ENVIRON}web ${USER}-${ENVIRON}
-    # </IfModule>
-# </VirtualHost>
-    # EOF
-# service apache2 reload
-# fi
