@@ -9,6 +9,7 @@ createDir()
         mkdir /var/sftp/${USER}/live
         chown -R root:root /var/sftp/${USER}
         chown -R ${USER}:sftp /var/sftp/${USER}/live
-        chmod -R 700 /var/sftp/${USER}/live
+        chmod -R 755 /var/sftp/${USER}/live
+        ln -s /var/sftp/${USER}/live /var/www/live/${DOMAIN}
     fi
 }
