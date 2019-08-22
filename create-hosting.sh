@@ -39,8 +39,8 @@ do
             --all)
                 source ./inc/create-dir.sh
                 source ./inc/create-user.sh
-                createDir
                 createUser
+                createDir
                 exit 1;;
             --create-dir)
                 source ./inc/create-dir.sh
