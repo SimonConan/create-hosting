@@ -4,7 +4,7 @@ createVhost()
     if [ ! -f /etc/apache2/sites-available/${DOMAIN}.conf ]
     then        
         echo ""
-        echo -e "\xf0\x9f\x96\x96 \033[33mCreate vhost for\033[0m \033[32m${DOMAIN}\033[0m"
+        echo -e "\xf0\x9f\x93\xb0 \033[33mCreate vhost for\033[0m \033[32m${DOMAIN}\033[0m"
         echo ""
         cat <<EOF > /etc/apache2/sites-available/${DOMAIN}.conf
 <VirtualHost *:80>

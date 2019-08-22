@@ -1,6 +1,7 @@
 # Function to create user and add sftp chroot dir in conf
 createUser() 
 {
+    source ${PWD}/.env
     if ! grep --quiet -E "^${USER}:" /etc/passwd
     then
         PASSWORD=`openssl rand -base64 12`
@@ -21,5 +22,11 @@ Match User ${USER}
 ########
 EOF
         service ssh restart
+    fi
+    
+    if [ ${MAIL_SENT_TO} != "" ]
+    then
+        echo "user : ${USER} || password : ${PASSWORD}" | mail -s "${DOMAIN} // SFTP accesses" ${MAIL_SENT_TO}
+        echo -e "       \xf0\x9f\x93\xa9 \033[33mEmail sent\033[0m"
     fi
 }

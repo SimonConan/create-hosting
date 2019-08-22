@@ -14,10 +14,16 @@ setupMysql()
         SQL="${Q1}${Q2}${Q3}"
 
         echo ""
-        echo -e "\xf0\x9f\x8c\x8e \033[33mCreate MYSQL DB and user\033[0m"
+        echo -e "\xf0\x9f\x92\xbe \033[33mCreate MYSQL DB and user\033[0m"
         echo -e "       \xf0\x9f\x94\x92 \033[33mPassword\033[0m   :  \033[32m${SQLPASS}\033[0m"
         echo ""
         export MYSQL_PWD=${MYSQL_ROOT_PASSWORD}
         mysql -uroot -e "${SQL}"
+    fi
+
+    if [ ${MAIL_SENT_TO} != "" ]
+    then
+        echo "DB : ${DOMAIN} || user : ${USER} || password : ${SQLPASS}" | mail -s "${DOMAIN} // BDD accesses" ${MAIL_SENT_TO}
+        echo -e "       \xf0\x9f\x93\xa9 \033[33mEmail sent\033[0m"
     fi
 }
