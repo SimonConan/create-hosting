@@ -1,4 +1,4 @@
-# Function to create user
+# Function to create user and add sftp chroot dir in conf
 createUser() 
 {
     if ! grep --quiet -E "^${USER}:" /etc/passwd

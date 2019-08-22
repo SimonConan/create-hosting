@@ -39,8 +39,10 @@ do
             --all)
                 source ./inc/create-dir.sh
                 source ./inc/create-user.sh
+                source ./inc/add-wp.sh
                 createUser
                 createDir
+                addWP
                 exit 1;;
             --create-dir)
                 source ./inc/create-dir.sh
@@ -49,6 +51,10 @@ do
             --create-user)
                 source ./inc/create-user.sh
                 createUser
+                ARG="true";;
+            --add-wp)
+                source ./inc/add-wp.sh
+                addWP
                 ARG="true";;
             *)
                 echo ""

@@ -1,4 +1,4 @@
-# Function to create directory for user and add sftp chroot dir in conf
+# Function to create directory for user and link it to its docroot
 createDir()
 {
     if [ ! -d /var/sftp/${USER}/live ]
