@@ -1,17 +1,23 @@
 # Function to create a mysql user and a database for the projet
 addWP()
 {
-    if [ ! -f /var/sftp/${USER}/live/wp-config.php ]
+    source ${PWD}/.env
+    if [ ${MYSQL_ROOT_PASSWORD} != "" ]
     then
+ 
+        SQLPASS=`openssl rand -base64 12`
+        SQLPASS="${SQLPASS}!"
+
+        Q1="CREATE DATABASE IF NOT EXISTS ${DOMAIN};"
+        Q2="GRANT ALL ON ${DOMAIN}.* TO '${USER}'@'%' IDENTIFIED BY '${SQLPASS}';"
+        Q3="FLUSH PRIVILEGES;"
+        SQL="${Q1}${Q2}${Q3}"
+
         echo ""
-        echo -e "\xf0\x9f\x8c\x8e \033[33mAdd WP sources\033[0m"
+        echo -e "\xf0\x9f\x8c\x8e \033[33mCreate MYSQL DB and user\033[0m"
+        echo -e "       \xf0\x9f\x94\x92 \033[33mPassword\033[0m   :  \033[32m${SQLPASS}\033[0m"
         echo ""
-        wp core download --path="/var/sftp/${USER}/live/" --locale="fr_FR" --allow-root
-        chown -R ${USER}:sftp /var/sftp/${USER}/live
-        chmod -R 755 /var/sftp/${USER}/live
-        find /var/sftp/${USER}/live/ -type d -exec chmod 755 {} \;
-        find /var/sftp/${USER}/live/ -type f -exec chmod 744 {} \;
-        # chown -R :www-data /var/sftp/${USER}/live/wp-content/uploads
-        # chmod -R 775 /var/sftp/${USER}/live/wp-content/uploads
+        export MYSQL_PWD=${MYSQL_ROOT_PASSWORD}
+        mysql -uroot -e "${SQL}"
     fi
 }

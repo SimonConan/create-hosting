@@ -7,6 +7,15 @@ then
     exit 1
 fi
 
+PWD=`pwd`
+
+if [ ! -f ${PWD}/.env ]
+then
+    echo ""
+    echo -e "\033[33m.env file not found\033[0m"
+    exit 1
+fi
+
 if [[ -z "$3" ]] || [[ $1 == --* ]] || [[ $2 == --* ]]
 then
     echo ""
@@ -41,29 +50,29 @@ do
     then
         case $i in
             --all)
-                source ./inc/create-dir.sh
-                source ./inc/create-user.sh
-                source ./inc/setup-mysql.sh
-                source ./inc/add-wp.sh
+                source ${PWD}/inc/create-dir.sh
+                source ${PWD}/inc/create-user.sh
+                source ${PWD}/inc/setup-mysql.sh
+                source ${PWD}/inc/add-wp.sh
                 createUser
                 createDir
                 setupMysql
                 addWP
                 exit 1;;
             --create-dir)
-                source ./inc/create-dir.sh
+                source ${PWD}/inc/create-dir.sh
                 createDir
                 ARG="true";;
             --create-user)
-                source ./inc/create-user.sh
+                source ${PWD}/inc/create-user.sh
                 createUser
                 ARG="true";;
             --add-wp)
-                source ./inc/add-wp.sh
+                source ${PWD}/inc/add-wp.sh
                 addWP
                 ARG="true";;
             --setup-mysql)
-                source ./inc/setup-mysql.sh
+                source ${PWD}/inc/setup-mysql.sh
                 addWP
                 ARG="true";;
             *)
