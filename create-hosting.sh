@@ -20,6 +20,10 @@ then
     echo -e  "      \033[32mCreate directory for user and add sftp chroot dir in conf\033[0m"
     echo -e  " \033[32m--create-user\033[0m"
     echo -e  "      \033[32mCreate SFTP user\033[0m"
+    echo -e  " \033[32m--setup-mysql\033[0m"
+    echo -e  "      \033[32mCreate a mysql user and a database for the projet\033[0m"
+    echo -e  " \033[32m--add-wp\033[0m"
+    echo -e  "      \033[32mAdd WP sources\033[0m"
     echo ""
     echo -e "\033[33mHelp:\033[0m"
     echo " Create hosting for test.fr and creation of a user test"
@@ -39,9 +43,11 @@ do
             --all)
                 source ./inc/create-dir.sh
                 source ./inc/create-user.sh
+                source ./inc/setup-mysql.sh
                 source ./inc/add-wp.sh
                 createUser
                 createDir
+                setupMysql
                 addWP
                 exit 1;;
             --create-dir)
@@ -54,6 +60,10 @@ do
                 ARG="true";;
             --add-wp)
                 source ./inc/add-wp.sh
+                addWP
+                ARG="true";;
+            --setup-mysql)
+                source ./inc/setup-mysql.sh
                 addWP
                 ARG="true";;
             *)

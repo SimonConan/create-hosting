@@ -1,4 +1,4 @@
-# Function to add the current version of Wordpress
+# Function to create a mysql user and a database for the projet
 addWP()
 {
     if [ ! -f /var/sftp/${USER}/live/wp-config.php ]
