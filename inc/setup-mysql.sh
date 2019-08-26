@@ -8,8 +8,8 @@ setupMysql()
         SQLPASS=`openssl rand -base64 12`
         SQLPASS="${SQLPASS}!"
 
-        Q1="CREATE DATABASE IF NOT EXISTS ${DOMAIN};"
-        Q2="GRANT ALL ON ${DOMAIN}.* TO '${USER}'@'%' IDENTIFIED BY '${SQLPASS}';"
+        Q1="CREATE DATABASE IF NOT EXISTS ${USER};"
+        Q2="GRANT ALL ON ${USER}.* TO '${USER}'@'%' IDENTIFIED BY '${SQLPASS}';"
         Q3="FLUSH PRIVILEGES;"
         SQL="${Q1}${Q2}${Q3}"
 
@@ -23,7 +23,7 @@ setupMysql()
 
     if [ ${MAIL_SENT_TO} != "" ]
     then
-        echo "DB : ${DOMAIN} || user : ${USER} || password : ${SQLPASS}" | mail -s "${DOMAIN} // BDD accesses" ${MAIL_SENT_TO}
+        echo "DB : ${USER} || user : ${USER} || password : ${SQLPASS}" | mail -s "${DOMAIN} // BDD accesses" ${MAIL_SENT_TO}
         echo -e "       \xf0\x9f\x93\xa9 \033[33mEmail sent\033[0m"
     fi
 }
