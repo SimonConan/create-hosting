@@ -37,6 +37,8 @@ then
     echo -e  "      \033[32mCreate Apache vhost for the project\033[0m"
     echo -e  " \033[32m--add-ssl\033[0m"
     echo -e  "      \033[32mAdd a ssl certificate\033[0m"
+    echo -e  " \033[32m--del\033[0m"
+    echo -e  "      \033[32mDelete a user and all dir\033[0m"
     echo ""
     echo -e "\033[33mHelp:\033[0m"
     echo " Create hosting for test.fr and creation of a user test"
@@ -91,6 +93,10 @@ do
                 source ${PWD}/inc/add-ssl.sh
                 addSsl
                 ARG="true";;
+            --del)
+                source ${PWD}/inc/del.sh
+                del
+                ARG="true";;
             *)
                 echo ""
                 echo -e " \033[32m$0 Unknown arguments: \033[0m" $i;;
@@ -116,5 +122,7 @@ then
     echo -e  "      \033[32mCreate Apache vhost for the project\033[0m"
     echo -e  " \033[32m--add-ssl\033[0m"
     echo -e  "      \033[32mAdd a ssl certificate\033[0m"
+    echo -e  " \033[32m--del\033[0m"
+    echo -e  "      \033[32mDelete a user and all dir\033[0m"
     echo ""
 fi

@@ -6,7 +6,7 @@ setupMysql()
     then
  
         SQLPASS=`openssl rand -base64 12`
-        SQLPASS="${SQLPASS}!"
+        SQLPASS="${SQLPASS}7!"
 
         Q1="CREATE DATABASE IF NOT EXISTS ${USER};"
         Q2="GRANT ALL ON ${USER}.* TO '${USER}'@'%' IDENTIFIED BY '${SQLPASS}';"
@@ -16,7 +16,6 @@ setupMysql()
         echo ""
         echo -e "\xf0\x9f\x92\xbe \033[33mCreate MYSQL DB and user\033[0m"
         echo -e "       \xf0\x9f\x94\x92 \033[33mPassword\033[0m   :  \033[32m${SQLPASS}\033[0m"
-        echo ""
         export MYSQL_PWD=${MYSQL_ROOT_PASSWORD}
         mysql -uroot -e "${SQL}"
     fi
