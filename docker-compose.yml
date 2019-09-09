@@ -1,0 +1,20 @@
+version: '3'
+services: 
+  mysql_ch:
+    image: mysql
+    container_name: mysql_ch
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+  web_ch:
+    build: .
+    container_name: web_ch
+    ports: 
+      - 81:80
+    depends_on: 
+      - mysql_ch
+    volumes :
+      - .:/opt/create-hosting
+      
