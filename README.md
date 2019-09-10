@@ -31,6 +31,7 @@ docker-compose run web_ch bash
 ```
 
 > The workdir is in /opt/create-hosting
->> setupMysql will not work because mysql client not installed
->> addSSL will not work because real DN is not pointing to the webserver
->> in addWP the DB info used won't be good
+
+:warning: setupMysql will not work because mysql client not installed\
+:warning: addSSL will not work because real DN is not pointing to the webserver\
+:warning: in addWP the DB info used won't be good
