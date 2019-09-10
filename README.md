@@ -24,6 +24,10 @@ sudo chmod -R 700 * && sudo chmod -R 700 .*
 
 You can use docker to test in a full Linux env.
 
+:warning: setupMysql will not work because mysql client not installed\
+:warning: addSSL will not work because real DN is not pointing to the webserver\
+:warning: in addWP the DB info used won't be good
+
 ### Usage
 ```bash
 docker-compose up -d
@@ -31,7 +35,3 @@ docker-compose run web_ch bash
 ```
 
 > The workdir is in /opt/create-hosting
-
-:warning: setupMysql will not work because mysql client not installed\
-:warning: addSSL will not work because real DN is not pointing to the webserver\
-:warning: in addWP the DB info used won't be good
