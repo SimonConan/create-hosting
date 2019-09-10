@@ -19,3 +19,13 @@ sudo chmod -R 700 * && sudo chmod -R 700 .*
 ```bash
 ./create-hosting.sh <domain> <user>
 ```
+
+## Docker
+
+You can use docker to test in a full Linux env.
+
+### Usage
+```bash
+docker-compose up -d
+docker-compose run web_ch bash
+```

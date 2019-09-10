@@ -1,5 +1,4 @@
 ## Standard image apache / php ##
-##
 #
 # setupMysql will not work because mysql client not installed
 # addSSL will not work because real DN is not pointing to the webserver
